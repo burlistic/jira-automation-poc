@@ -17,7 +17,7 @@ var location = 'australiaeast'
 var resourceGroupNamePrefix = 'bicep-practice'
 
 module resourceGroup 'modules/resourceGroup.bicep' = {
-  name: '${resourceGroupNamePrefix}-${environmentName}'
+  name: '${resourceGroupNamePrefix}-rg-${environmentName}'
   params: {
     environmentName: environmentName
     resourceGroupLocation: location
