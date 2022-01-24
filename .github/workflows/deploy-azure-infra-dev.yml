@@ -11,18 +11,19 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-    - uses: azure/arm-deploy@v1
-      with:
-        scope: subscription
-        region: ${{ env.TARGET_REGION }}
-        deploymentName: "azure-infra-dev-gha${{ github.run_number }}"
-        template: ./infra/main.bicep
-        parameters: ./infra/parameters/deploy-azure-infra-parameters-dev.json
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/arm-deploy@v1
+        with:
+          scope: subscription
+          region: ${{ env.TARGET_REGION }}
+          deploymentName: "azure-infra-dev-gha${{ github.run_number }}"
+          template: ./infra/main.bicep
+          parameters: ./infra/parameters/deploy-azure-infra-parameters-dev.json
