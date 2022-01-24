@@ -1,0 +1,24 @@
+name: Deploy Azure Infra to Dev Environment
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - uses: azure/arm-deploy@v2
+      with:
+        scope: subscription
+        deploymentName: "azure-infra-dev-gha${{ github.run_number }}"
+        template: ../../infra/main.bicep
+        parameters: ../../infra/parameters/deploy-azure-infra-parameters-dev.json
