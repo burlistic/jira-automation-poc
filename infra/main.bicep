@@ -37,7 +37,6 @@ module functionAppResources 'modules/functionAppResources.bicep' = {
   name: 'functionAppResources-${environmentName}'
   params: {
     environmentName: environmentName
-    location: location
     projectName: projectName
     resourceTags: resourceTags
   }
