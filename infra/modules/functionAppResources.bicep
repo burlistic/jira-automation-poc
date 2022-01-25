@@ -8,8 +8,6 @@
 ])
 param environmentName string
 
-@description('The azure region into which the resources should be deployed')
-param location string
 
 @description('The name of the project these resources are being provisioned for.')
 @minLength(1)
@@ -23,10 +21,41 @@ param resourceTags object
 @description('Name for function app storage account')
 var storageAccountNameSuffix = replace(projectName, '-', '') // Name cannot contain '-' chars
 
+
+@description('The function app runtime to use')
+var functionRuntime = 'dotnet'
+
+@description('The function app extension version to use')
+var functionAppExtensionVersion = '~4'
+
+@description('Config for function app')
+var functionAppConfig = [
+  {
+    name: 'AzureWebJobsStorage'
+    value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccount.id, storageAccount.apiVersion).keys[0].value}'
+  }
+  {
+    name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+    value: appInsights.properties.InstrumentationKey
+  }
+  {
+    name: 'APPINSIGHTS_CONNECTIONSTRING'
+    value: 'Instrumentationkey=${appInsights.properties.InstrumentationKey}'
+  }
+  {
+    name: 'FUNCTIONS_EXTENSION_VERSION'
+    value: functionAppExtensionVersion
+  }
+  {
+    name: 'FUNCTIONS_WORKER_RUNTIME'
+    value: functionRuntime
+  }
+]
+
 // Resources -----------------------------------------------------------------
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   name: 'sta${environmentName}${storageAccountNameSuffix}'
-  location: location
+  location: resourceGroup().location
   tags: resourceTags
   sku: {
     name: 'Standard_LRS'
@@ -39,7 +68,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: 'ains-${environmentName}-${projectName}'
-  location: location
+  location: resourceGroup().location
   tags: resourceTags
   kind: 'web'
   properties: {
@@ -49,7 +78,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: 'asp-${environmentName}-${projectName}'
-  location: location
+  location: resourceGroup().location
   tags: resourceTags
   kind: 'linux'
   sku: {
@@ -57,6 +86,19 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   }
   properties: {
     reserved: true // required for operating system to be set to 'Linux'
+  }
+}
+
+resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
+  name: 'fa-${environmentName}-${projectName}'
+  location: resourceGroup().location
+  tags: resourceTags
+  properties: {
+    serverFarmId: appServicePlan.id
+    httpsOnly: true
+    siteConfig: {
+      appSettings: functionAppConfig
+    }
   }
 }
 
