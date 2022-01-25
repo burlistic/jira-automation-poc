@@ -72,19 +72,20 @@ def main():
     # Deploy azure infra with Bicep files ####################################
     location = 'australiaeast' # think this is needed because its a sub level deployment
     bicep_file_path = './infra/main.bicep' # using root of repo as that's where running script from
+    parameter_file_path = './infra/parameters/deploy-azure-infra-parameters-dev.json'
 
     print(f"- Deploying {bicep_file_path} to {racwa_sub_name}...")
-    deploy_main_bicep_file(location, bicep_file_path)
+    deploy_main_bicep_file(location, bicep_file_path, parameter_file_path)
 
     # Logout racwa account ###################################################
     azure_logout()
 
     if old_default_sub_name is not None and old_default_sub_name != racwa_sub_name:
         azure_account_set(subscriptions[old_default_sub_name]["subscription_id"])
-        print(f"- Subscription default reset to {old_default_sub_name}")
+        print(f"\n- Subscription default reset to {old_default_sub_name}")
 
 
-    print("- Subscriptions currently logged in to AZ CLI:")
+    print("- Subscriptions currently logged in to AZ CLI:\n")
     print(list_logged_in_subscriptions())
 
 if __name__ == "__main__":
