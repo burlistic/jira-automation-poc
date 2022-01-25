@@ -92,6 +92,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
 resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
   name: 'fa-${environmentName}-${projectName}'
   location: resourceGroup().location
+  kind: 'functionapp'
   tags: resourceTags
   properties: {
     serverFarmId: appServicePlan.id
