@@ -38,7 +38,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
 }
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: '$ains-${environmentName}-${projectName}'
+  name: 'ains-${environmentName}-${projectName}'
   location: location
   tags: resourceTags
   kind: 'web'
@@ -48,7 +48,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 }
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: '$asp-${environmentName}-${projectName}'
+  name: 'asp-${environmentName}-${projectName}'
   location: location
   tags: resourceTags
   kind: 'linux'
