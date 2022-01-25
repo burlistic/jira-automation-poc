@@ -78,11 +78,11 @@ def main():
     deploy_main_bicep_file(location, bicep_file_path, parameter_file_path)
 
     # Logout racwa account ###################################################
-    azure_logout()
+    # azure_logout()
 
-    if old_default_sub_name is not None and old_default_sub_name != racwa_sub_name:
-        azure_account_set(subscriptions[old_default_sub_name]["subscription_id"])
-        print(f"\n- Subscription default reset to {old_default_sub_name}")
+    # if old_default_sub_name is not None and old_default_sub_name != racwa_sub_name:
+    #     azure_account_set(subscriptions[old_default_sub_name]["subscription_id"])
+    #     print(f"\n- Subscription default reset to {old_default_sub_name}")
 
 
     print("- Subscriptions currently logged in to AZ CLI:\n")
