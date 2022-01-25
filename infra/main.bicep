@@ -27,7 +27,7 @@ var resourceTags = {
 
 // Resources -----------------------------------------------------------------
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: '${projectName}-rg-${environmentName}'
+  name: 'rg-${environmentName}-${projectName}'
   location: location
   tags: resourceTags
 }

@@ -21,11 +21,11 @@ param resourceTags object
 
 // Variables -----------------------------------------------------------------
 @description('Name for function app storage account')
-var storageAccountNamePrefix = replace(projectName, '-', '') // Name cannot contain '-' chars
+var storageAccountNameSuffix = replace(projectName, '-', '') // Name cannot contain '-' chars
 
 // Resources -----------------------------------------------------------------
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: '${storageAccountNamePrefix}sa${environmentName}'
+  name: '$sta${environmentName}${storageAccountNameSuffix}'
   location: location
   tags: resourceTags
   sku: {
@@ -38,7 +38,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
 }
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: '${projectName}-ains-${environmentName}'
+  name: '$ains-${environmentName}-${projectName}'
   location: location
   tags: resourceTags
   kind: 'web'
@@ -48,7 +48,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 }
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: '${projectName}-asp-${environmentName}'
+  name: '$asp-${environmentName}-${projectName}'
   location: location
   tags: resourceTags
   kind: 'linux'
@@ -59,5 +59,6 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
     reserved: true // required for operating system to be set to 'Linux'
   }
 }
+
 
 // Outputs -------------------------------------------------------------------
