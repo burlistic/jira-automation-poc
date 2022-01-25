@@ -50,15 +50,19 @@ def main():
         print("- Login successful.")
 
 
-    racwa_sub_enabled = subscriptions[racwa_sub_name]["state"].lower() == 'enabled'
-
+    racwa_sub_enabled = subscriptions[racwa_sub_name]["is_default"].lower() == 'true'
     if racwa_sub_enabled:
-        print("RACWA VisualStudio Subscription already enabled.")
+        print("- RACWA VisualStudio Subscription already enabled.")
     else:
-        # enable the subscription
+        azure_account_set(subscriptions[racwa_sub_name]["subscription_id"])
         subscriptions = get_azure_subscriptions_logged_in()
 
-    
+        racwa_sub_enabled = subscriptions[racwa_sub_name]["is_default"].lower() == 'true'
+        if not racwa_sub_enabled:
+            print("- RACWA VisualStudio Subscription was not enabled.\nDeployment cancelled.\n")
+            return
+        else:
+            print("- RACWA VisualStudio Subsciption enabled successfully.")
 
     # deploy bicep
 

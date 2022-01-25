@@ -9,3 +9,7 @@ def cmd_return_output(command):
 def azure_login():
     """ run az login command """
     return cmd_return_output('az login')
+
+def azure_account_set(subscription_id):
+    """ Set the current subscription to use to subscription_id """
+    return cmd_return_output(f'az account set --subscription {subscription_id}')
