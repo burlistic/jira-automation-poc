@@ -3,6 +3,7 @@
 // To deploy a Resource Group the scope needs to be the subscription it is deployed into
 targetScope = 'subscription'
 
+// Parameters ----------------------------------------------------------------
 @description('The name of the environment resources should be deployed to should represent.')
 @allowed([
   'dev'
@@ -10,17 +11,34 @@ targetScope = 'subscription'
 ])
 param environmentName string
 
+
+// Variables -----------------------------------------------------------------
 @description('The azure region into which the resources should be deployed')
 var location = 'australiaeast'
 
 @description('A prefix for the resource group')
-var resourceGroupNamePrefix = 'bicep-practice'
+var projectName = 'bicep-practice'
 
-module resourceGroup 'modules/resourceGroup.bicep' = {
-  name: '${resourceGroupNamePrefix}-rg-${environmentName}'
-  params: {
-    environmentName: environmentName
-    resourceGroupLocation: location
-    resourceGroupNamePrefix: resourceGroupNamePrefix
+
+// Resources -----------------------------------------------------------------
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: '${projectName}-rg-${environmentName}'
+  location: location
+  tags: {
+    environment: environmentName
   }
 }
+
+module functionAppResources 'modules/functionAppResources.bicep' = {
+  scope: resourceGroup
+  name: 'functionAppResources-${environmentName}' 
+  params: {
+    environmentName: environmentName
+    location: location
+    projectName: projectName
+  }
+}
+
+// Outputs -------------------------------------------------------------------
+
+
