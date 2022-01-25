@@ -3,6 +3,7 @@
 import re
 
 from enum import IntEnum
+from shell_command_helpers import *
 
 
 class SubscriptionListIndexes(IntEnum):
@@ -57,3 +58,14 @@ def subscription_list_to_dict(subscription_list):
         subscriptions[name] = info_dict
 
     return subscriptions
+
+
+def get_azure_subscriptions_logged_in():
+    """ return a list of accounts that are logged into az cli """
+    num_table_headings = 2
+
+    account_table_rows = cmd_return_output(
+        'az account list -o table').rstrip().split('\n')
+    subscriptions = remove_table_headings(
+        account_table_rows, num_table_headings)
+    return subscription_list_to_dict(reduce_internal_whitespace(subscriptions))

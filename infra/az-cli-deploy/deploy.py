@@ -3,25 +3,8 @@ Script to deploy the main.bicep file to my RACWA Visual Studio Subscription
 using the Azure CLI
 """
 
-import subprocess
-
 from get_login_table_helpers import *
-
-
-def cmd_return_output(command):
-    """ Run the command (string) and return the output (string) """
-    return subprocess.run(command.split(), check=True, text=True, capture_output=True).stdout
-
-
-def get_azure_subscriptions_logged_in():
-    """ return a list of accounts that are logged into az cli """
-    num_table_headings = 2
-
-    account_table_rows = cmd_return_output(
-        'az account list -o table').rstrip().split('\n')
-    subscriptions = remove_table_headings(
-        account_table_rows, num_table_headings)
-    return subscription_list_to_dict(reduce_internal_whitespace(subscriptions))
+from shell_command_helpers import *
 
 
 def main():
