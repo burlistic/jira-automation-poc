@@ -2,9 +2,9 @@
 
 import subprocess
 
-def cmd_return_output(command):
+def cmd_return_output(command, capture_output=True):
     """ Run the command (string) and return the output (string) """
-    return subprocess.run(command.split(), check=True, text=True, capture_output=True).stdout
+    return subprocess.run(command.split(), check=True, text=True, capture_output=capture_output).stdout
 
 def azure_login():
     """ run az login command """
@@ -24,6 +24,7 @@ def list_logged_in_subscriptions():
 
 def deploy_main_bicep_file(location, path_to_file):
     """ return the output from deploying the main bicep file """
-    return cmd_return_output(
-        f'az deployment sub create --location {location} --template-file {path_to_file}'
+    cmd_return_output(
+        f'az deployment sub create --location {location} --template-file {path_to_file}',
+        capture_output=False
     )
