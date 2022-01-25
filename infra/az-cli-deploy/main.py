@@ -85,7 +85,7 @@ def main():
     bicep_file_path = './infra/main.bicep' # using root of repo as that's where running script from
     parameter_file_path = './infra/parameters/deploy-azure-infra-parameters-dev.json'
 
-    print(f"- Deploying {bicep_file_path} to {racwa_sub_name}...")
+    print(f"{bcolors.OKBLUE}- Deploying {bicep_file_path} to {racwa_sub_name}...{bcolors.ENDC}")
     deploy_main_bicep_file(location, bicep_file_path, parameter_file_path)
 
     # Logout racwa account ###################################################

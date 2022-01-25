@@ -25,7 +25,7 @@ var storageAccountNameSuffix = replace(projectName, '-', '') // Name cannot cont
 
 // Resources -----------------------------------------------------------------
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: '$sta${environmentName}${storageAccountNameSuffix}'
+  name: 'sta${environmentName}${storageAccountNameSuffix}'
   location: location
   tags: resourceTags
   sku: {
