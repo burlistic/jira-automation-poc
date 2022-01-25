@@ -16,15 +16,13 @@ param location string
 @maxLength(19) // need 2 chars for 'sa' at end + 3 for env name (max length is 24 for storage account)
 param projectName string
 
+@description('Tags for the resources')
+param resourceTags object
+
 
 // Variables -----------------------------------------------------------------
 @description('Name for function app storage account')
 var storageAccountNamePrefix = replace(projectName, '-', '') // Name cannot contain '-' chars
-
-@description('Tags for the resources')
-var resourceTags = {
-  environment: environmentName
-}
 
 
 // Resources -----------------------------------------------------------------
@@ -41,5 +39,29 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   }
 }
 
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: '${projectName}-ains-${environmentName}'
+  location: location
+  tags: resourceTags
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+
+
+  }
+}
+
+resource plan 'Microsoft.Web/serverfarms@2020-12-01' = {
+  name: '${projectName}-asp-${environmentName}'
+  location: location
+  tags: resourceTags
+  kind: 'linux'
+  sku: {
+    name: 'Y1' // Consumption plan SKU = 'Y1'
+  }
+  properties: {
+    reserved: true // required for operating system to be set to 'Linux'
+  }
+}
 
 // Outputs -------------------------------------------------------------------

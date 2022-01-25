@@ -19,14 +19,19 @@ var location = 'australiaeast'
 @description('A prefix for the resource group')
 var projectName = 'bicep-practice'
 
+@description('Tags to apply to resources in this deployment')
+var resourceTags = {
+  environment: environmentName
+  location: location
+  project: projectName
+}
+
 
 // Resources -----------------------------------------------------------------
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: '${projectName}-rg-${environmentName}'
   location: location
-  tags: {
-    environment: environmentName
-  }
+  tags: resourceTags
 }
 
 module functionAppResources 'modules/functionAppResources.bicep' = {
@@ -36,6 +41,7 @@ module functionAppResources 'modules/functionAppResources.bicep' = {
     environmentName: environmentName
     location: location
     projectName: projectName
+    resourceTags: resourceTags
   }
 }
 
