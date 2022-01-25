@@ -11,7 +11,6 @@ targetScope = 'subscription'
 ])
 param environmentName string
 
-
 // Variables -----------------------------------------------------------------
 @description('The azure region into which the resources should be deployed')
 var location = 'australiaeast'
@@ -26,7 +25,6 @@ var resourceTags = {
   project: projectName
 }
 
-
 // Resources -----------------------------------------------------------------
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: '${projectName}-rg-${environmentName}'
@@ -36,7 +34,7 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 
 module functionAppResources 'modules/functionAppResources.bicep' = {
   scope: resourceGroup
-  name: 'functionAppResources-${environmentName}' 
+  name: 'functionAppResources-${environmentName}'
   params: {
     environmentName: environmentName
     location: location
@@ -46,5 +44,3 @@ module functionAppResources 'modules/functionAppResources.bicep' = {
 }
 
 // Outputs -------------------------------------------------------------------
-
-
