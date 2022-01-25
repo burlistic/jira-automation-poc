@@ -44,7 +44,7 @@ def get_subscription_dict(subscription):
     """ return a tuple (sub_name, info_dict) """
     sub_info = {
         'subscription_id': subscription[SubscriptionListIndexes.SUB_ID],
-        'state': subscription[SubscriptionListIndexes.STATE]
+        'is_default': subscription[SubscriptionListIndexes.IS_DEFAULT]
     }
     return (subscription[SubscriptionListIndexes.SUB_NAME], sub_info)
 
