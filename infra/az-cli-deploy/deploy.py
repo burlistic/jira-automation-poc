@@ -10,9 +10,10 @@ from enum import IntEnum
 
 
 class SubscriptionListIndexes(IntEnum):
-    SUB_NAME   = 0
-    SUB_ID     = 1
-    STATE      = 2
+    """ Enumerate indexes of sub info list """
+    SUB_NAME = 0
+    SUB_ID = 1
+    STATE = 2
     IS_DEFAULT = 3
 
 
@@ -27,18 +28,20 @@ def newlines_to_space(string):
 
 
 def remove_table_headings(table_row_list, num_headings):
-    """ 
+    """
     Remove the headings from the list of table rows
     """
     return table_row_list[num_headings:]
 
 
 def join_sub_name(subscription):
+    """ if a subscription name has white space replace it with a dash """
     subscription = subscription.split('AzureCloud')
     subscription[0] = '-'.join(subscription[0].split())
 
     subscription = ' '.join(subscription).split()
     return subscription
+
 
 def reduce_internal_whitespace(string_list):
     """ Reduce the internal whitespace of each string in stringlist to one space """
@@ -48,8 +51,8 @@ def reduce_internal_whitespace(string_list):
 def get_subscription_dict(subscription):
     """ return a tuple (sub_name, info_dict) """
     sub_info = {
-        'subscription_id' : subscription[SubscriptionListIndexes.SUB_ID],
-        'state' : subscription[SubscriptionListIndexes.STATE]
+        'subscription_id': subscription[SubscriptionListIndexes.SUB_ID],
+        'state': subscription[SubscriptionListIndexes.STATE]
     }
     return (subscription[SubscriptionListIndexes.SUB_NAME], sub_info)
 
@@ -67,33 +70,34 @@ def subscription_list_to_dict(subscription_list):
 
 def get_azure_subscriptions_logged_in():
     """ return a list of accounts that are logged into az cli """
-    NUM_TABLE_HEADINGS = 2
+    num_table_headings = 2
 
-    account_table_rows = cmd_return_output('az account list -o table').rstrip().split('\n')
-    subscriptions = remove_table_headings(account_table_rows, NUM_TABLE_HEADINGS)
+    account_table_rows = cmd_return_output(
+        'az account list -o table').rstrip().split('\n')
+    subscriptions = remove_table_headings(
+        account_table_rows, num_table_headings)
     return subscription_list_to_dict(reduce_internal_whitespace(subscriptions))
-
 
 
 def main():
     """ Deploys main.bicep to RACWA VS Sub assuming Azure CLI is already logged in """
 
-    RACWA_SUB_NAME = 'Visual-Studio-Professional-Subscription'
+    racwa_sub_name = 'Visual-Studio-Professional-Subscription'
 
     subscriptions = get_azure_subscriptions_logged_in()
-    racwa_sub_logged_in = RACWA_SUB_NAME in subscriptions.keys()
+    racwa_sub_logged_in = racwa_sub_name in subscriptions
 
     if not racwa_sub_logged_in:
         # login
         subscriptions = get_azure_subscriptions_logged_in()
 
-    racwa_sub_enabled = subscriptions[RACWA_SUB_NAME]["state"].lower() == 'enabled'
+    racwa_sub_enabled = subscriptions[racwa_sub_name]["state"].lower() == 'enabled'
     if not racwa_sub_enabled:
         # enable the subscription
         subscriptions = get_azure_subscriptions_logged_in()
 
     # deploy bicep
-        
+
 
 if __name__ == "__main__":
     main()
