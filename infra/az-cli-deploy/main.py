@@ -9,6 +9,7 @@ from set_subscription_helpers import *
 
 
 class bcolors:
+    """ Colours for terminal output """
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'
@@ -56,14 +57,14 @@ def main():
                     valid_input = True
 
                 continue
-                    
+
         if not racwa_sub_logged_in:
             return
-        
+
         print(f"{bcolors.OKGREEN}- Login successful.{bcolors.ENDC}")
 
     # Set default subscription ###############################################
-    old_default_sub_name = get_default_sub_name(subscriptions) 
+    old_default_sub_name = get_default_sub_name(subscriptions)
     racwa_sub_enabled = subscriptions[racwa_sub_name]["is_default"].lower() == 'true'
 
     if racwa_sub_enabled:
