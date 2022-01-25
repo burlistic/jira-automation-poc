@@ -47,7 +47,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-resource plan 'Microsoft.Web/serverfarms@2020-12-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: '${projectName}-asp-${environmentName}'
   location: location
   tags: resourceTags
