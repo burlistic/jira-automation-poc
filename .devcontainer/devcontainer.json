@@ -23,7 +23,8 @@
 		"ms-vscode.azure-account",
 		"ms-vscode.vscode-node-azure-pack",
 		"ms-python.python",
-		"redhat.vscode-yaml"
+		"redhat.vscode-yaml",
+		"ms-azuretools.vscode-azurestaticwebapps"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
