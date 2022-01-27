@@ -1,7 +1,12 @@
 # bicep-practice
  A repo to practice using Bicep to deploy Azure resources through the Azure CLI and GitHub actions.
 
- ## Folder Structure
+## Folder Structure
+* ***.devcontainer/***
+    * Contains docker container config to run on linux.  
+    **Cannot debug Azure Function in macOS VSCode.**
+        * Debugger does not attach properly to Function App
+
 * ***.github/***  
     * ***workflows/***
         * Contains the yaml files that GitHub Actions will look for event conditions in.  
@@ -20,6 +25,9 @@
             **TODO:** Oscar said there is a repo where you can create one
 
 * ***src/*** - Azure Function App Code
+    * ChatServiceFunctions/
+        * Azure functions for the chat service created in RAC Engineer Learning Lab - Session 2  
+        **(Currently only contains the HttpTrigger template)**
     
 ### Branch Protection
 There are branch protection rules for branches

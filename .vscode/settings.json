@@ -2,5 +2,11 @@
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.formatting.provider": "autopep8",
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "azureFunctions.deploySubpath": "src/ChatServiceFunctions/bin/Release/net6.0/publish",
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.projectSubpath": "src/ChatServiceFunctions",
+    "azureFunctions.preDeployTask": "publish (functions)"
 }
