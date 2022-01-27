@@ -21,6 +21,14 @@
 
 * ***src/*** - Azure Function App Code
     
+### Branch Protection
+There are branch protection rules for branches
+* main
+    * PR required for merge
+    * Requires successful status check on GitHub Action job, *deploy*
+* dev
+    * PR required for merge
+
 
 ### Authenticating GitHub Actions with Azure 
 To deploy to Azure with GitHub actions you need to add a secret to the repository *AZURE_CREDENTIALS*. 
