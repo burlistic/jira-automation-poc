@@ -37,7 +37,9 @@
 There are branch protection rules for branches
 * main
     * PR required for merge
-    * Requires successful status check on GitHub Action job, *deploy*
+    * Requires successful status check on GitHub Action jobs:
+        * *deploy-infra*
+        * *deploy-functions*
 * dev
     * PR required for merge
 
