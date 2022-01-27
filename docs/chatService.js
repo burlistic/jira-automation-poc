@@ -245,27 +245,24 @@ window.onload = function() {
     inputGroup.id = "messageInput";
     inputGroup.classList.add("input-group", "p-3", "mb-3", "dark");
     chatInputRow.appendChild(inputGroup);
-  
+
     const inputName = document.createElement("input");
     inputName.id = "inputName";
     inputName.type = "text";
     inputName.classList.add("form-control");
-    inputName.style.width = "20%";
     inputName.placeholder = "Name";
     inputGroup.appendChild(inputName);
-  
+
     const inputMessage = document.createElement("input");
     inputMessage.id = "inputMessage";
     inputMessage.type = "text";
     inputMessage.classList.add("form-control");
-    inputMessage.style.width = "70%";
     inputMessage.placeholder = "Message";
     inputGroup.appendChild(inputMessage);
   
     const inputSend = document.createElement("button");
     inputSend.classList.add("btn", "btn-warning");
     inputSend.type = "button";
-    inputSend.style.width = "10%";
     inputSend.style.color = "rgb(12, 71, 200)";
     inputSend.innerHTML = "Send";
     inputGroup.appendChild(inputSend);
