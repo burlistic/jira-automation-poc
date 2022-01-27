@@ -13,7 +13,7 @@ namespace Bicep.Practice.Services
     {
         public class MessageItem
         {
-            public int Id { get; set; }
+            public string Id { get; set; }
             public string Name { get; set; }
             public string Message { get; set; }
 
@@ -35,7 +35,7 @@ namespace Bicep.Practice.Services
 
             public ResponseMessage(string msgType, string msg)
             {
-                Message = String.Format("{}: {}", msgType, msg);
+                Message = String.Format("{0}: {1}", msgType, msg);
             }
         }
 
@@ -90,12 +90,12 @@ namespace Bicep.Practice.Services
             }
 
             // Assign an Id to the message
-            req.Id = MessagesStore.Count() > 0 ? MessagesStore.MaxBy(m => m.Id).Id + 1 : 1;
+            req.Id = Guid.NewGuid().ToString();
 
             // Add message to MessageStore
             MessagesStore.Insert(0, req);
 
-            var okMessage = new ResponseMessage($"Message recieved from {name}");
+            var okMessage = new ResponseMessage($"Message created with Id: {req.Id}");
             log.LogInformation(okMessage.Message);
 
             return new OkObjectResult(okMessage);
@@ -104,19 +104,10 @@ namespace Bicep.Practice.Services
 
         [FunctionName("DeleteMessage")]
         public static IActionResult DeleteMessage(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "message/{id:int}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "message/{id}")] HttpRequest req,
             ILogger log,
-            int id)
+            string id)
         {
-            // Check if valid msg ID
-            if (id < 1)
-            {
-                var errorMessage = new ResponseMessage("Error", "Message Ids are not less than 1.");
-                log.LogError(errorMessage.Message);
-
-                return new BadRequestObjectResult(errorMessage);
-            }
-
             // Try to retrieve msg
             var msgToDelete = MessagesStore.FirstOrDefault(m => m.Id == id);
 
