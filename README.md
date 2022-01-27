@@ -28,6 +28,10 @@
     * ChatServiceFunctions/
         * Azure functions for the chat service created in RAC Engineer Learning Lab - Session 2  
         **(Currently only contains the HttpTrigger template)**
+
+* ***testing/***  
+    * Contains files for testing:
+        * **Postman collection** - for Function App HTTP endpoints
     
 ### Branch Protection
 There are branch protection rules for branches
