@@ -99,6 +99,11 @@ resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
     httpsOnly: true
     siteConfig: {
       appSettings: functionAppConfig
+      cors: {
+        allowedOrigins: [
+          'https://thomas-cleary.github.io'
+        ]
+      }
     }
   }
 }
