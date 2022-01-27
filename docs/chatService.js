@@ -217,7 +217,7 @@ window.onload = function() {
       }
     };
   
-    xhttp.open("POST", "http://localhost:7071/api/messages");
+    xhttp.open("POST", "https://fa-dev-bicep-practice.azurewebsites.net/api/messages/");
     xhttp.send(JSON.stringify(requestBody));
   }
   
