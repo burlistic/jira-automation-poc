@@ -3,7 +3,7 @@ window.onload = function() {
   
     setInterval(() => {
      getMessages(); 
-    }, 5000);
+    }, 1000);
   };
   
   
