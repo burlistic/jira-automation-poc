@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Bicep.Practice.Services
+namespace CICD.Practice
 {
     public static class HttpExample
     {
