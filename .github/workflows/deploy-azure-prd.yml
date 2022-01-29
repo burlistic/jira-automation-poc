@@ -34,32 +34,31 @@ jobs:
           template: ./infra/main.bicep
           parameters: ./infra/parameters/deploy-azure-infra-parameters-prd.json
 
-  # TODO: Add AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD to repo secrets
-  # deploy-functions:
-  #   needs: deploy-infra
-  #   runs-on: ubuntu-latest
-  #   environment: production
+  deploy-functions:
+    needs: deploy-infra
+    runs-on: ubuntu-latest
+    environment: production
 
-  #   steps:
-  #     - name: Run Checkout GitHub Action
-  #       uses: actions/checkout@master
+    steps:
+      - name: Run Checkout GitHub Action
+        uses: actions/checkout@master
 
-  #     - name: Run Setup DotNet ${{ env.DOTNET_VERSION }} Action
-  #       uses: actions/setup-dotnet@v1
-  #       with:
-  #         dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Run Setup DotNet ${{ env.DOTNET_VERSION }} Action
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-  #     - name: Resolve Project Dependencies Using Dotnet (bash command)
-  #       shell: bash
-  #       run: |
-  #         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
-  #         dotnet build --configuration Release --output ./output
-  #         popd
+      - name: Resolve Project Dependencies Using Dotnet (bash command)
+        shell: bash
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet build --configuration Release --output ./output
+          popd
 
-  #     - name: Run Azure Functions Action
-  #       uses: Azure/functions-action@v1
-  #       id: fa
-  #       with:
-  #         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-  #         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output
-  #         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD }}
+      - name: Run Azure Functions Action
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD }}
