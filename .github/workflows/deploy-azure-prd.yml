@@ -1,0 +1,65 @@
+name: "Deploy Azure Infra to PRD Environment"
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  TARGET_REGION: australiaeast
+  AZURE_FUNCTIONAPP_NAME: fa-prd-bicep-practice # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: src/LearningLogFunctions # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: "6.0.100" # set this to the dotnet version to use
+
+jobs:
+  deploy-infra:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Run Checkout GitHub Action
+        uses: actions/checkout@v1
+
+      - name: Run Azure Login Action
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Run Azure ARM Deploy Action
+        uses: azure/arm-deploy@v1
+        with:
+          scope: subscription
+          region: ${{ env.TARGET_REGION }}
+          deploymentName: azure-infra-dev-gha${{ github.run_number }}
+          template: ./infra/main.bicep
+          parameters: ./infra/parameters/deploy-azure-infra-parameters-prd.json
+
+  # TODO: Add AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD to repo secrets
+  # deploy-functions:
+  #   needs: deploy-infra
+  #   runs-on: ubuntu-latest
+  #   environment: production
+
+  #   steps:
+  #     - name: Run Checkout GitHub Action
+  #       uses: actions/checkout@master
+
+  #     - name: Run Setup DotNet ${{ env.DOTNET_VERSION }} Action
+  #       uses: actions/setup-dotnet@v1
+  #       with:
+  #         dotnet-version: ${{ env.DOTNET_VERSION }}
+
+  #     - name: Resolve Project Dependencies Using Dotnet (bash command)
+  #       shell: bash
+  #       run: |
+  #         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+  #         dotnet build --configuration Release --output ./output
+  #         popd
+
+  #     - name: Run Azure Functions Action
+  #       uses: Azure/functions-action@v1
+  #       id: fa
+  #       with:
+  #         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+  #         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output
+  #         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD }}
