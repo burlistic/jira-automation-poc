@@ -1,7 +1,7 @@
 # cicd-practice 🛠🤖
  A repo to practice CI/CD 🤖 with Azure Functions ⚡️, Bicep 💪 and Github Actions 🚀.
 
- ## Project Board 📋
+ ## Project Board 📋💡
 https://github.com/thomas-cleary/cicd-practice/projects/1
 
 ## Git Workflow 🧬🌲
