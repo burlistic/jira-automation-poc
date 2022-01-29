@@ -1,5 +1,5 @@
 # cicd-practice
- A repo to practice CI/CD with Azure, Bicep and Github Actions.
+ A repo to practice CI/CD with Azure Resources, Bicep and Github Actions.
 
  ## Project Board
 https://github.com/thomas-cleary/cicd-practice/projects/1
