@@ -1,8 +1,11 @@
 # cicd-practice
  A repo to practice CI/CD with Azure, Bicep and Github Actions.
 
-## GitHub Pages
-https://thomas-cleary.github.io/cicd-practice/
+ ## Project Board
+https://github.com/thomas-cleary/cicd-practice/projects/1
+
+## Git Workflow
+Using Gitflow as of this PR https://github.com/thomas-cleary/cicd-practice/pull/36 (previously wasn't merging main back into dev)
 
 ## Folder Structure
 * ***.devcontainer/***
@@ -25,7 +28,7 @@ https://thomas-cleary.github.io/cicd-practice/
     * ***parameters/***
         * Contains parameter files to pass to ***main.bicep*** or other Bicep modules
     * ***az-cli-deploy/***
-        * Contains a python scripts to manually deploy ***main.bicep** to my RACWA Visual Studio subscription  
+        * Contains a python scripts to manually deploy **main.bicep** to my RACWA Visual Studio subscription  
             * I cannot manually create a *Service Principal* to use GitHub Actions to deploy as my RAC personal account does not have the required permissions.  
             **TODO:** Oscar said there is a repo where you can create
     <br><br>
