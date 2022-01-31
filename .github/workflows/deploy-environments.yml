@@ -8,7 +8,7 @@ on:
 
 jobs:
   call-deploy-app-dev:
-    if: github.ref_name == dev
+    if: github.ref_name == 'dev'
     uses: ./.github/workflows/deploy-app.yml
     with:
       environment: dev
@@ -21,7 +21,7 @@ jobs:
       functionAppPublishProfile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_DEV }}
 
   call-deploy-app-prd:
-    if: github.ref_name == main
+    if: github.ref_name == 'main'
     uses: ./.github/workflows/deploy-app.yml
     with:
       environment: prd
