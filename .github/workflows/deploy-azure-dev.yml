@@ -5,21 +5,15 @@ on:
     branches:
       - dev
 
-env:
-  TARGET_REGION: australiaeast
-  AZURE_FUNCTIONAPP_NAME_SUFFIX: bicep-practice # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: src/LearningLogFunctions # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: "6.0.100" # set this to the dotnet version to use
-
 jobs:
   call-deploy-app:
     uses: ./.github/workflows/deploy-app.yml
     with:
       environment: dev
-      targetRegion: ${{ env.TARGET_REGION }}
-      dotnet-version: ${{ env.DOTNET_VERSION }}
-      functionAppPackagePath: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-      functionAppName: fa-dev-${{ env.AZURE_FUNCTIONAPP_NAME_SUFFIX }}
+      targetRegion: australiaeast
+      dotnet-version: "6.0.100"
+      functionAppPackagePath: src/LearningLogFunctions
+      functionAppName: fa-dev-bicep-practice
     secrets:
       azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
       functionAppPublishProfile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_DEV }}
