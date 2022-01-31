@@ -1,4 +1,4 @@
-name: "Deploy the Project to Different Environments"
+name: "Deploy cicd-practice"
 
 on:
   push:
