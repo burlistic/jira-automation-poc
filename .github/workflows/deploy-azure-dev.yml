@@ -11,7 +11,7 @@ jobs:
     with:
       environment: dev
       targetRegion: australiaeast
-      dotnet-version: "6.0.100"
+      dotnetVersion: "6.0.x"
       functionAppPackagePath: src/LearningLogFunctions
       functionAppName: fa-dev-bicep-practice
     secrets:
