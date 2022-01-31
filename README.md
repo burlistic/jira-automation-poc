@@ -4,7 +4,7 @@
  ## Project Board 📋
 https://github.com/thomas-cleary/cicd-practice/projects/1
 
-## Git Workflow 🧬🌲
+## Git Workflow 🧬
 Using Gitflow as of this PR https://github.com/thomas-cleary/cicd-practice/pull/36 (previously wasn't merging main back into dev)
 
 ## Folder Structure 🗂
@@ -39,7 +39,7 @@ Using Gitflow as of this PR https://github.com/thomas-cleary/cicd-practice/pull/
         **(not implemented yet)**
     <br><br>
 
-* ***testing/*** ✅❌
+* ***testing/*** ✅
     * Contains files for testing:
         * **Postman collection** - for Function App HTTP endpoints
     <br><br>
@@ -55,6 +55,6 @@ There are branch protection rules for branches
     * PR required for merge
 
 
-### Authenticating GitHub Actions with Azure 🔑🚪
+### Authenticating GitHub Actions with Azure 🔑
 To deploy to Azure with GitHub actions you need to add a secret to the repository *AZURE_CREDENTIALS*. 
 See https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret
