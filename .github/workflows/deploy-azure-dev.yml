@@ -13,7 +13,7 @@ env:
 
 jobs:
   call-deploy-app:
-    uses: ./.github/deploy-app.yml
+    uses: ./.github/deploy-app.yml@dev # branch name required 
     with:
       environment: dev
       targetRegion: ${{ env.TARGET_REGION }}
