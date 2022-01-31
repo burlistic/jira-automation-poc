@@ -7,13 +7,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: '0'
+
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@master
+      id: tag_version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         RELEASE_BRANCHES: main
+
+    - name: Create a GitHub Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: ${{ steps.tag_version.outputs.new_tag }}
