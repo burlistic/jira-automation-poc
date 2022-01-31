@@ -5,6 +5,11 @@ on:
     branches:
       - dev
       - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.devcontainer/**'
+      - 'testing/**'
 
 jobs:
   call-deploy-app-dev:
