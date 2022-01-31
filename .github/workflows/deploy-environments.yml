@@ -1,0 +1,34 @@
+name: "Deploy the Project to Different Environments"
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  call-deploy-app-dev:
+    if: github.ref_name == dev
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      environment: dev
+      targetRegion: australiaeast
+      dotnetVersion: "6.0.x"
+      functionAppPackagePath: src/LearningLogFunctions
+      functionAppName: fa-dev-bicep-practice
+    secrets:
+      azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+      functionAppPublishProfile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_DEV }}
+
+  call-deploy-app-prd:
+    if: github.ref_name == main
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      environment: prd
+      targetRegion: australiaeast
+      dotnetVersion: "6.0.x"
+      functionAppPackagePath: src/LearningLogFunctions
+      functionAppName: fa-prd-bicep-practice
+    secrets:
+      azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+      functionAppPublishProfile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD }}
