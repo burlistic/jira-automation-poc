@@ -1,0 +1,65 @@
+name: "Deploy Infra and Src to Azure"
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+      targetRegion:
+        required: true
+        type: string
+
+      dotnet-version:
+        required: true
+        type: string
+
+      functionAppPackagePath:
+        required: true
+        type: string
+
+      functionAppName:
+        required: true
+        type: string
+
+    secrets:
+      azureCredentials:
+        required: true
+
+      functionAppPublishProfile:
+        required: true
+
+jobs:
+  deploy-infra:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Run Checkout GitHub Action
+        uses: actions/checkout@v1
+
+      - name: Deploy Azure Infra Action
+        uses: ./.github/actions/deploy-azure-infra.yml # Could refer to it with name/repo@tag I think
+        with:
+          environment: ${{ inputs.environment }}
+          azureCredentials: ${{ secrets.azureCredentials }}
+          targetRegion: ${{ inputs.targetRegion }}
+
+  deploy-functions:
+    needs: deploy-infra
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+  
+    steps:
+      - name: Run Checkout GitHub Action
+        uses: actions/checkout@v1
+
+      - name: Deploy Azure Functions Action
+        uses: ./.github/actions/deploy-azure-functions.yml
+        with:
+          environment: ${{ inputs.environment }}
+          dotnet-version: ${{ inputs.dotnetVersion }}
+          functionAppPackagePath: ${{ inputs.functionAppPackagePath }}
+          functionAppName: ${{ inputs.functionAppName }}
+          functionAppPublishProfile: ${{ secrets.functionAppPublishProfile }}

@@ -1,0 +1,46 @@
+name: "Deploy Azure Functions"
+description: "Deploys src to the specificed Function App"
+
+inputs:
+  environment:
+    description: The name of the environment to deploy to
+    required: true
+
+  dotnetVersion:
+    description: The dotnet version to use by the Function App
+    required: true
+
+  functionAppPackagePath:
+    description: The package path of the Function App to deploy to
+    required: true
+
+  functionAppName:
+    description: The name of the Function App to deploy to
+    required: true
+
+  functionAppPublishProfile:
+    description: The publish profile of the Function App to deploy to
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run Setup DotNet ${{ inputs.dotnetVersion }} Action
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ inputs.dotnetVersion }}
+
+    - name: Resolve Project Dependencies Using Dotnet (bash command)
+      shell: bash
+      run: |
+        pushd './${{ inputs.functionAppPackagePath }}'
+        dotnet build --configuration Release --output ./output
+        popd
+
+    - name: Run Azure Functions Action
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{ inputs.functionAppName }}
+        package: ${{ inputs.functionAppPackagePath }}/output
+        publish-profile: ${{ inputs.functionAppPublishProfile }}
