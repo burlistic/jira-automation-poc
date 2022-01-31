@@ -59,7 +59,7 @@ jobs:
         uses: ./.github/actions/deploy-azure-functions-action
         with:
           environment: ${{ inputs.environment }}
-          dotnet-version: ${{ inputs.dotnetVersion }}
+          dotnetVersion: ${{ inputs.dotnetVersion }}
           functionAppPackagePath: ${{ inputs.functionAppPackagePath }}
           functionAppName: ${{ inputs.functionAppName }}
           functionAppPublishProfile: ${{ secrets.functionAppPublishProfile }}
