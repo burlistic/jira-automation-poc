@@ -16,6 +16,8 @@
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
 
+	"mounts": ["source=${localEnv:HOME}${env:UserProfile}/.nuget,target=/home/vscode/.nuget,type=bind,consistency=cached"],
+
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-dotnettools.csharp",
