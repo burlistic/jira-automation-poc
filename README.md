@@ -20,7 +20,7 @@ Using Gitflow as of this PR https://github.com/thomas-cleary/cicd-practice/pull/
         (used to deploy Azure Resources and Function Code)
     <br><br>
 
-* ***infra/*** ☁️
+* ***infra/*** 🧱
     * **main.bicep**  
         * The Bicep file used to define Azure resources to be provisioned.
     * ***modules/***  
