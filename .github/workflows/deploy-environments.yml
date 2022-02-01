@@ -7,9 +7,11 @@ on:
       - main
     paths-ignore:
       - '**.md'
+      - '**.gitignore'
+      - '**.gitattributes'
       - 'docs/**'
       - '.devcontainer/**'
-      - 'testing/**'
+      - 'tests/postman-collections**'
 
 # TODO: Use https://github.com/marketplace/actions/set-environment-variables
 # - Can create seperate .env files for dev and prd to reduce duplication of workflow call inputs
