@@ -35,7 +35,7 @@ jobs:
   deploy-infra:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
-    if: ${{ secrets.azureCredentials }} != ''
+    if: secrets.azureCredentials != ''
 
     steps:
       - name: Run Checkout GitHub Action
@@ -52,7 +52,7 @@ jobs:
     needs: deploy-infra
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
-    if: ${{ secrets.functionAppPublishProfile }} != ''
+    if: secrets.functionAppPublishProfile != ''
   
     steps:
       - name: Run Checkout GitHub Action
