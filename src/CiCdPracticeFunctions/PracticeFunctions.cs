@@ -22,19 +22,16 @@ namespace CiCd.Practice
     public static class PracticeFunctions
     {
         [FunctionName("EchoEnvironment")]
-        public static IActionResult Run(
+        public static IActionResult EchoEnvironment(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "environment")] HttpRequest req,
             ILogger log)
         {
             // Could try and use executionEnvironment to progromatically set name
             log.LogInformation("EchoEnvironment Function processed a request."); 
 
-            // var echoEnvironmentResponse = new EchoEnvironmentResponse(GetEnvironmentVariable("ENVIRONMENT_NAME"));
-            // var response = new OkObjectResult(echoEnvironmentResponse);
-            // return response;
+            var echoEnvironmentResponse = new EchoEnvironmentResponse(GetEnvironmentVariable("ENVIRONMENT_NAME"));
+            return new OkObjectResult(echoEnvironmentResponse);
 
-            // Pretend as if we havent implemented the method yet
-            return new OkResult();
         }
 
         private static string GetEnvironmentVariable(string name)
