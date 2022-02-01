@@ -9,5 +9,5 @@
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.projectSubpath": "src/CiCdPracticeFunctions",
     "azureFunctions.preDeployTask": "publish (functions)",
-    "dotnet-test-explorer.testProjectPath": "./tests/CiCdPracticeFunctions.Tests"
+    "dotnet-test-explorer.testProjectPath": "./tests/CiCdPracticeFunctions.UnitTests"
 }
