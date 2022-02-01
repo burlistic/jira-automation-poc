@@ -58,8 +58,7 @@ There are branch protection rules for branches
     * **PR required for merge**
     * Requires successful status check on GitHub Action jobs:
         * *build-and-test*
-        * *deploy-infra*
-        * *deploy-functions*
+        * (Originally had infra and function deployment as well but some pushes to main won't trigger those workflows)
 * ***dev*** 🧑‍💻
     * **PR required for merge**
     * Requires successful status check on GitHub Actions jobs:
