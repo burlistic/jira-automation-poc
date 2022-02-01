@@ -3,10 +3,10 @@
     "python.linting.enabled": true,
     "python.formatting.provider": "autopep8",
     "python.languageServer": "Pylance",
-    "azureFunctions.deploySubpath": "src/LearningLogFunctions/bin/Release/net6.0/publish",
+    "azureFunctions.deploySubpath": "src/CiCdPracticeFunctions/bin/Release/net6.0/publish",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.projectSubpath": "src/LearningLogFunctions",
+    "azureFunctions.projectSubpath": "src/CiCdPracticeFunctions",
     "azureFunctions.preDeployTask": "publish (functions)"
 }
