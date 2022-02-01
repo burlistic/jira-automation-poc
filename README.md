@@ -40,7 +40,7 @@ Using Gitflow. <br>
         **(not implemented yet)**
     <br><br>
 
-* ***testing/*** ✅
+* ***tests/*** ✅
     * Contains files for testing:
         * **Postman collection** - for Function App HTTP endpoints
     <br><br>

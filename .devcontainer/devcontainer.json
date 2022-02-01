@@ -26,7 +26,8 @@
 		"ms-vscode.vscode-node-azure-pack",
 		"ms-python.python",
 		"redhat.vscode-yaml",
-		"ms-azuretools.vscode-azurestaticwebapps"
+		"ms-azuretools.vscode-azurestaticwebapps",
+		"formulahendry.dotnet-test-explorer"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
