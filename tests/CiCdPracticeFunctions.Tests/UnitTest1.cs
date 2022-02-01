@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace NunitTests;
+namespace CiCdPracticeFunctions.Tests;
 
 public class Tests
 {
