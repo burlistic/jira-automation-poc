@@ -31,20 +31,7 @@ on:
         required: true
 
 jobs:
-  check-infra-env:
-    runs-on: ubuntu-latest
-    outputs:
-      azure-credentials-exists: ${{ steps.azure-credentials-key.outputs.defined }}
-    steps:
-      - id: azure-credentials-key
-        env:
-          AZURE_CREDENTIALS_KEY: ${{ secrets.AZURE_CREDENTIALS }}
-        if: "${{ env.AZURE_CREDENTIALS_KEY != '' }}"
-        run: echo "::set-output name=defined::true"
-
   deploy-infra:
-    needs: check-infra-env
-    if: needs.check-infra-env.outputs.azure-credentials-exists == 'true'
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
 
@@ -59,27 +46,8 @@ jobs:
           azureCredentials: ${{ secrets.azureCredentials }}
           targetRegion: ${{ inputs.targetRegion }}
 
-  check-functions-env:
-    runs-on: ubuntu-latest
-    outputs:
-      fa-publish-profile-exists: ${{ steps.fa-pubish-profile-key.outputs.defined }}
-    
-    steps:
-      - id: fa-publish-profile-key-dev
-        env:
-          FA_PUBLISH_PROFILE_KEY_DEV: ${{ secrets.FUNCTIONAPP_PUBLISH_PROFILE_DEV }}
-        if: "${{ env.FA_PUBLISH_PROFILE_KEY_DEV != '' && inputs.environment == 'dev'}}"
-        run: echo "::set-output name=defined::true"
-
-      - id: fa-publish-profile-key-prd
-        env:
-          FA_PUBLISH_PROFILE_KEY_PRD: ${{ secrets.FUNCTIONAPP_PUBLISH_PROFILE_PRD }}
-        if: "${{ env.FA_PUBLISH_PROFILE_KEY_PRD != '' && inputs.environment == 'prd'}}"
-        run: echo "::set-output name=defined::true"
-
   deploy-functions:
-    needs: [deploy-infra, check-functions-env]
-    if: needs.check-functions-env.outputs.fa-publish-profile-exists == 'true'
+    needs: deploy-infra
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
   
