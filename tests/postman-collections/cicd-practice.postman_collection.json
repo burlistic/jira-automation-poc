@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "b9c4fd7b-c282-4b61-92ee-2bddcf4cbf7a",
+		"name": "cicd-practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "EchoEnvironment",
+					"item": [
+						{
+							"name": "environment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7071/api/environment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7071",
+									"path": [
+										"api",
+										"environment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "dev",
+			"item": [
+				{
+					"name": "EchoEnvironment",
+					"item": [
+						{
+							"name": "environment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fa-dev-cicd-practice.azurewebsites.net/api/environment",
+									"protocol": "https",
+									"host": [
+										"fa-dev-cicd-practice",
+										"azurewebsites",
+										"net"
+									],
+									"path": [
+										"api",
+										"environment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "prd",
+			"item": [
+				{
+					"name": "EchoEnvironment",
+					"item": [
+						{
+							"name": "environment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://fa-prd-cicd-practice.azurewebsites.net/api/environment",
+									"protocol": "https",
+									"host": [
+										"fa-prd-cicd-practice",
+										"azurewebsites",
+										"net"
+									],
+									"path": [
+										"api",
+										"environment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
