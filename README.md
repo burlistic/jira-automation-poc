@@ -1,11 +1,12 @@
 # cicd-practice 🤖
- A repo to practice CI/CD 🤖 with Azure Functions ⚡️, Bicep 💪 and Github Actions 🚀.
 
- ## Project Board 📋💡
-https://github.com/thomas-cleary/cicd-practice/projects/1
+### A repo to practice CI/CD 🤖 with Azure Functions ⚡️, Bicep 💪 and Github Actions 🚀.  
 
-## Git Workflow 🧬🌲
-Using Gitflow. <br>
+## Project Board 📋
+* https://github.com/thomas-cleary/cicd-practice/projects/1
+
+## Git Workflow 🧬
+* Using Gitflow. <br>
 **NOTE:** Was previously unaware that you only need to merge main back into dev if a hotfix was applied to main. 
 
 ## Folder Structure 🗂
@@ -15,13 +16,17 @@ Using Gitflow. <br>
         * Debugger does not attach properly to Function App
     <br><br>
 
-* ***.github/*** 🐙🐈
+* ***.github/*** 🐙
+    * ***actions/***
+        * Contains composite actions that workflows use to deploy infra and src
     * ***workflows/***
-        * Contains the yaml files that GitHub Actions will look for event conditions in.  
-        (used to deploy Azure Resources and Function Code)
+        * Contains the yaml files that GitHub Actions will look for event conditions in:
+            * Deploy infra and src
+            * Build and test dotnet project in src
+            * Bump release version if push is to main branch
     <br><br>
 
-* ***infra/*** 🧱🔨
+* ***infra/*** 🧱
     * **main.bicep**  
         * The Bicep file used to define Azure resources to be provisioned.
     * ***modules/***  
@@ -35,25 +40,30 @@ Using Gitflow. <br>
     <br><br>
 
 * ***src/*** ⚡️
-    * ToDoService/
-        * Azure functions for a simple ToDo list API
-        **(not implemented yet)**
+    * ***CiCdPracticeFunctions/***
+        * Azure functions project containing a single, simple function:
+            * EchoEnvironment() - returns a message stating which deployment environment the request was sent to
     <br><br>
 
 * ***tests/*** ✅❌
-    * Contains files for testing:
-        * **Postman collection** - for Function App HTTP endpoints
+    * ***CiCdPracticeFunctions.UnitTests/***
+        * Contains the Nunit project to run unit tests for the src/CiCdPracticeFunctions project
+    * ***postman-collections/***
+        * Contains a Postman collection to test local, dev and prd environments
     <br><br>
     
 ### Branch Protection 👮‍♀️
 There are branch protection rules for branches
-* main 👑
-    * PR required for merge
+* ***main*** 👑
+    * **PR required for merge**
     * Requires successful status check on GitHub Action jobs:
+        * *build-and-test*
         * *deploy-infra*
         * *deploy-functions*
-* dev 🧑‍💻
-    * PR required for merge
+* ***dev*** 🧑‍💻
+    * **PR required for merge**
+    * Requires successful status check on GitHub Actions jobs:
+        * *build-and-test*
 
 
 ### Authenticating GitHub Actions with Azure 🔐
