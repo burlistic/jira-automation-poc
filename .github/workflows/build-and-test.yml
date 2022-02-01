@@ -18,13 +18,4 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Change Directory to Test Project
-        run: cd ./tests/CiCdPracticeFunctions.UnitTests
-
-      - name: Install dependancies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build
-      
-      - name: Test
-        run: dotnet test
+        run: cd ./tests/CiCdPracticeFunctions.UnitTests && dotnet restore && dotnet build && dotnet test
