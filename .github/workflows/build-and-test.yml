@@ -1,11 +1,6 @@
 name: "Build and Test Project"
 
-on:
-  push:
-    paths:
-      - '**.cs'
-      - '**.csproj'
-      - '**build-and-test.yml'
+on: [push]
 
 env:
   DOTNET_VERSION: 6.0.x # The .NET SDK version to use
@@ -21,6 +16,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Change Directory to Test Project
+        run: cd ./tests/CiCdPracticeFunctions.UnitTests
 
       - name: Install dependancies
         run: dotnet restore
