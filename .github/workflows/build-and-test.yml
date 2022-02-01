@@ -1,0 +1,32 @@
+name: "Build and Test Project"
+
+on:
+  push:
+    paths:
+      - '**.cs'
+      - '**.csproj'
+      - '**build-and-test.yml'
+
+env:
+  DOTNET_VERSION: 6.0.x # The .NET SDK version to use
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependancies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build
+      
+      - name: Test
+        run: dotnet test
