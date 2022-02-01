@@ -50,6 +50,10 @@ var functionAppConfig = [
     name: 'FUNCTIONS_WORKER_RUNTIME'
     value: functionRuntime
   }
+  {
+    name: 'ENVIRONMENT_NAME'
+    value: environmentName
+  }
 ]
 
 // Resources -----------------------------------------------------------------
