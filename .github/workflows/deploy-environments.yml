@@ -1,4 +1,4 @@
-name: "Deploy cicd-practice"
+name: "Deploy Environments"
 
 on:
   push:
@@ -11,6 +11,9 @@ on:
       - '.devcontainer/**'
       - 'testing/**'
 
+# TODO: Use https://github.com/marketplace/actions/set-environment-variables
+# - Can create seperate .env files for dev and prd to reduce duplication of workflow call inputs
+
 jobs:
   call-deploy-app-dev:
     if: github.ref_name == 'dev'
@@ -19,8 +22,8 @@ jobs:
       environment: dev
       targetRegion: australiaeast
       dotnetVersion: "6.0.x"
-      functionAppPackagePath: src/LearningLogFunctions
-      functionAppName: fa-dev-bicep-practice
+      functionAppPackagePath: src/CiCdPracticeFunctions
+      functionAppName: fa-dev-${{ github.event.repository.name }}
     secrets:
       azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
       functionAppPublishProfile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_DEV }}
@@ -32,8 +35,8 @@ jobs:
       environment: prd
       targetRegion: australiaeast
       dotnetVersion: "6.0.x"
-      functionAppPackagePath: src/LearningLogFunctions
-      functionAppName: fa-prd-bicep-practice
+      functionAppPackagePath: src/CiCdPracticeFunctions
+      functionAppName: fa-prd-${{ github.event.repository.name }}
     secrets:
       azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
       functionAppPublishProfile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_PRD }}

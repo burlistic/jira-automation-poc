@@ -5,7 +5,8 @@
 https://github.com/thomas-cleary/cicd-practice/projects/1
 
 ## Git Workflow 🧬
-Using Gitflow as of this PR https://github.com/thomas-cleary/cicd-practice/pull/36 (previously wasn't merging main back into dev)
+Using Gitflow. <br>
+**NOTE:** Was previously unaware that you only need to merge main back into dev if a hotfix was applied to main. 
 
 ## Folder Structure 🗂
 * ***.devcontainer/*** 🐳

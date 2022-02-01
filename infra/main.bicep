@@ -16,7 +16,7 @@ param environmentName string
 var location = 'australiaeast'
 
 @description('A prefix for the resource group')
-var projectName = 'bicep-practice'
+var projectName = 'cicd-practice'
 
 @description('Tags to apply to resources in this deployment')
 var resourceTags = {
