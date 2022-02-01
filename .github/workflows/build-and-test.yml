@@ -17,5 +17,5 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Change Directory to Test Project
+      - name: Run Unit Tests
         run: cd ./tests/CiCdPracticeFunctions.UnitTests && dotnet restore && dotnet build && dotnet test

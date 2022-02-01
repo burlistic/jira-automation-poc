@@ -22,7 +22,8 @@ namespace CiCdPracticeFunctions.UnitTests
             var response = PracticeFunctions.EchoEnvironment(request, logger) as ObjectResult;
 
             // Assert
-            Assert.That(expectedResponseCode, Is.EqualTo(response?.StatusCode));
+            // Assert.That(expectedResponseCode, Is.EqualTo(response?.StatusCode));
+            Assert.Fail();
         }
 
         [Test]
