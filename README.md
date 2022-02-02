@@ -9,7 +9,7 @@
 * Using Gitflow. <br>
 **NOTE:** Was previously unaware that you only need to merge main back into dev if a hotfix was applied to main. 
 
-## Version Tagging
+## Version Tagging 🏷
 * External action looks for these substrings in commit messages to decide how to bump the main branch release version:
     * #none - no bump
     * #patch - bump to version x.x.+1
