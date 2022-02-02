@@ -6,11 +6,50 @@ window.onload = () => {
 
 function init() {
     addGetBtnOnClick();
+    addEnvSwitchOnChange();
+
+    highlightSelectedEnvironment();
 }
+
 
 function addGetBtnOnClick() {
     const getButton = document.getElementById("get-btn");
     getButton.onclick = getEnvironment
+}
+
+function addEnvSwitchOnChange() {
+    const envSwitch = document.getElementById("env-switch");
+    envSwitch.onchange = highlightSelectedEnvironment
+}
+
+function highlightSelectedEnvironment() {
+    const envSwitch = document.getElementById("env-switch");
+
+    const labelIdPrefix = "switch-label-";
+    let selectedEnv = "dev";
+    let unusedEnv = "prd";
+
+    if (envSwitch.checked) {
+        selectedEnv = "prd";
+        unusedEnv   = "dev";
+    }
+
+    const onSwitchLabel = document.getElementById(labelIdPrefix + selectedEnv);
+    const offSwitchLabel = document.getElementById(labelIdPrefix + unusedEnv);
+
+    emptyClassList(onSwitchLabel);
+    emptyClassList(offSwitchLabel);
+
+    onSwitchLabel.classList.add("text-warning");
+    offSwitchLabel.classList.add("text-white");
+
+}
+
+function emptyClassList(element) {
+    let classList = element.classList;
+    while (classList.length > 0) {
+        classList.remove(classList.item(0));
+    }
 }
 
 function getEnvironment() {
@@ -24,7 +63,7 @@ function getEnvironment() {
                     updateMessageText(responseText["message"]);
                     updateGetBtnText();
                     isLoading = false;
-                }, 1000);
+                }, 500);
             }
             else {
                 updateMessageText("Oops something went wrong...");
