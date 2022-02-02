@@ -52,7 +52,7 @@
         * Contains a Postman collection to test local, dev and prd environments
     <br><br>
     
-### Branch Protection 👮‍♀️
+## Branch Protection 👮‍♀️
 There are branch protection rules for branches
 * ***main*** 👑
     * **PR required for merge**
@@ -60,11 +60,9 @@ There are branch protection rules for branches
         * *build-and-test*
         * (Originally had infra and function deployment as well but some pushes to main won't trigger those workflows)
 * ***dev*** 🧑‍💻
-    * **PR required for merge**
-    * Requires successful status check on GitHub Actions jobs:
-        * *build-and-test*
+    * **Originally had protections, but removed after finish work to easily fix issues**
 
 
-### Authenticating GitHub Actions with Azure 🔐
+## Authenticating GitHub Actions with Azure 🔐
 To deploy to Azure with GitHub actions you need to add a secret to the repository *AZURE_CREDENTIALS*. 
 See https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret
