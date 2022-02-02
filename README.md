@@ -3,7 +3,7 @@
 ### A repo to practice CI/CD 🤖 with Azure Functions ⚡️, Bicep 💪 and Github Actions 🚀.  
 
 ## Demo 🕹
-* https://github.com/thomas-cleary/cicd-practice/
+* https://thomas-cleary.github.io/cicd-practice/
 
     * Simple frontend to call the ***/environments*** endpoint of the Function App
         * Hosted with GitHub Pages 📄
