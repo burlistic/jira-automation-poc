@@ -9,6 +9,13 @@
 * Using Gitflow. <br>
 **NOTE:** Was previously unaware that you only need to merge main back into dev if a hotfix was applied to main. 
 
+## Version Tagging
+* External action looks for these substrings in commit messages to decide how to bump the main branch release version:
+    * #none - no bump
+    * #patch - bump to version x.x.+1
+    * #minor - bump to version x.+1.0
+    * #major - bump to version +1.0.0
+
 ## Folder Structure 🗂
 * ***.devcontainer/*** 🐳
     * Contains docker container config to run on linux.  
