@@ -56,6 +56,16 @@ var functionAppConfig = [
   }
 ]
 
+@description('URIs allowed to make requests to the functionapp in the Dev environment.')
+var functionAppAllowedOriginsDev = [
+  '*'
+]
+
+@description('URIs allowed to make requests to the functionapp in the Prd environment.')
+var functionAppAllowedOriginsPrd = [
+  'https://thomas-cleary.github.io'
+]
+
 // Resources -----------------------------------------------------------------
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   name: 'sta${environmentName}${storageAccountNameSuffix}'
@@ -104,9 +114,7 @@ resource functionApp 'Microsoft.Web/sites@2021-02-01' = {
     siteConfig: {
       appSettings: functionAppConfig
       cors: {
-        allowedOrigins: [
-          'https://thomas-cleary.github.io'
-        ]
+        allowedOrigins: environmentName == 'prd' ? functionAppAllowedOriginsPrd : functionAppAllowedOriginsDev
       }
     }
   }
