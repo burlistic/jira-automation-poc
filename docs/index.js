@@ -10,10 +10,10 @@ function init() {
 
 function addGetBtnOnClick() {
     const getButton = document.getElementById("get-btn");
-    getButton.onclick = getDev;
+    getButton.onclick = getEnvironment
 }
 
-function getDev() {
+function getEnvironment() {
     const xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = () => {
@@ -24,10 +24,12 @@ function getDev() {
                     updateMessageText(responseText["message"]);
                     updateGetBtnText();
                     isLoading = false;
-                }, 2000);
+                }, 1000);
             }
             else {
-                console.log(xhttp.status);
+                updateMessageText("Oops something went wrong...");
+                updateGetBtnText();
+                isLoading = false;
             }
         }
         else {
@@ -40,9 +42,22 @@ function getDev() {
 
     }
 
-    xhttp.open("GET", "https://fa-prd-cicd-practice.azurewebsites.net/api/environment");
+    const environment = getEnvironmentChoice();
+
+    const url = "https://fa-" + environment + "-cicd-practice.azurewebsites.net/api/environment";
+
+    xhttp.open("GET", url);
     xhttp.send();
 }
+
+function getEnvironmentChoice() {
+    const envSwitch = document.getElementById("env-switch");
+    if (envSwitch.checked) {
+        return "prd";
+    }
+    return "dev";
+}
+
 
 function updateMessageText(message) {
     const titleMessage = document.getElementById("get-msg");
