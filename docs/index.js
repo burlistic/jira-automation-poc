@@ -1,7 +1,8 @@
+isLoading = false;
+
 window.onload = () => {
     init();
 }
-
 
 function init() {
     addGetBtnOnClick();
@@ -22,6 +23,7 @@ function getDev() {
                 setTimeout(() => {
                     updateMessageText(responseText["message"]);
                     updateGetBtnText();
+                    isLoading = false;
                 }, 2000);
             }
             else {
@@ -29,13 +31,16 @@ function getDev() {
             }
         }
         else {
-            updateMessageLoading();
-            updateGetBtnLoading();
+            if (!isLoading) {
+                updateMessageLoading();
+                updateGetBtnLoading();
+                isLoading = true;
+            }
         }
 
     }
 
-    xhttp.open("GET", "https://fa-prd-cicd-practice.azurewebsites.net/api/environment");
+    xhttp.open("GET", "https://fa-dev-cicd-practice.azurewebsites.net/api/environment");
     xhttp.send();
 }
 
