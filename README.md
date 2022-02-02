@@ -58,9 +58,10 @@ There are branch protection rules for branches
     * **PR required for merge**
     * Requires successful status check on GitHub Action jobs:
         * *build-and-test*
-        * (Originally had infra and function deployment as well but some pushes to main won't trigger those workflows)
+        * Originally had infra and function deployment as well but some pushes to main won't trigger those workflows
 * ***dev*** 🧑‍💻
-    * **Originally had protections, but removed after finish work to easily fix issues**
+    * **Cannot be deleted**
+        * Originally had more protections but these were removed when work was finished
 
 
 ## Authenticating GitHub Actions with Azure 🔐
