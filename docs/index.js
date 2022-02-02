@@ -40,7 +40,7 @@ function getDev() {
 
     }
 
-    xhttp.open("GET", "https://fa-dev-cicd-practice.azurewebsites.net/api/environment");
+    xhttp.open("GET", "https://fa-prd-cicd-practice.azurewebsites.net/api/environment");
     xhttp.send();
 }
 
