@@ -42,4 +42,5 @@ module functionAppResources 'modules/functionAppResources.bicep' = {
   }
 }
 
+
 // Outputs -------------------------------------------------------------------
