@@ -63,7 +63,7 @@ var functionAppAllowedOriginsDev = [
 
 @description('URIs allowed to make requests to the functionapp in the Prd environment.')
 var functionAppAllowedOriginsPrd = [
-  'https://thomas-cleary.github.io'
+  'https://burlistic.github.io'
 ]
 
 // Resources -----------------------------------------------------------------

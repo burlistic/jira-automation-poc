@@ -1,10 +1,10 @@
-using CiCd.Practice;
+using PracticeFunctions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using System.Net;
 
-namespace CiCdPracticeFunctions.UnitTests
+namespace PracticeFunctions.UnitTests
 {
     [TestFixture] 
     public class EchoEnvironmentTests

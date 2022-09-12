@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CiCdPracticeFunctions\CiCdPracticeFunctions.csproj" />
+    <ProjectReference Include="..\..\src\PracticeFunctions\PracticeFunctions.csproj" />
   </ItemGroup>
 
 </Project>

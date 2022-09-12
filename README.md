@@ -1,19 +1,12 @@
-# cicd-practice 🤖
+# jira-automation-poc 🤖
 
-### A repo to practice CI/CD 🤖 with Azure Functions ⚡️, Bicep 💪 and Github Actions 🚀.  
+### A PoC repo to test out JIRA automation for creating Change Request and fixed versions with issues tagging. Uses Azure Functions ⚡️, Bicep 💪 and Github Actions 🚀.  
 
-## Demo 🕹
-* https://thomas-cleary.github.io/cicd-practice/
+<!--- ### Demo 🕹
+* https://burlistic.github.io/jira-automation-poc/
 
     * Simple frontend to call the ***/environments*** endpoint of the Function App
-        * Hosted with GitHub Pages 📄
-
-## Project Board 📋
-* https://github.com/thomas-cleary/cicd-practice/projects/1
-
-## Git Workflow 🧬
-* Using Gitflow. <br>
-**NOTE:** Was previously unaware that you only need to merge main back into dev if a hotfix was applied to main. 
+        * Hosted with GitHub Pages 📄 -->
 
 ## Version Tagging 🏷
 * External action looks for these substrings in commit messages to decide how to bump the main branch release version:
@@ -49,18 +42,17 @@
     * ***az-cli-deploy/***
         * Contains a python scripts to manually deploy **main.bicep** to my RACWA Visual Studio subscription  
             * I cannot manually create a *Service Principal* to use GitHub Actions to deploy as my RAC personal account does not have the required permissions.  
-            **TODO:** Oscar said there is a repo where you can create
     <br><br>
 
 * ***src/*** ⚡️
-    * ***CiCdPracticeFunctions/***
+    * ***PracticeFunctions/***
         * Azure functions project containing a single, simple function:
             * EchoEnvironment() - returns a message stating which deployment environment the request was sent to
     <br><br>
 
 * ***tests/*** ✅❌
-    * ***CiCdPracticeFunctions.UnitTests/***
-        * Contains the Nunit project to run unit tests for the src/CiCdPracticeFunctions project
+    * ***PracticeFunctions.UnitTests/***
+        * Contains the Nunit project to run unit tests for the src/PracticeFunctions project
     * ***postman-collections/***
         * Contains a Postman collection to test local, dev and prd environments
     <br><br>

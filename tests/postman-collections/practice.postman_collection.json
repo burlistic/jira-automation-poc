@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "b9c4fd7b-c282-4b61-92ee-2bddcf4cbf7a",
-		"name": "cicd-practice",
+		"name": "jira-automation-poc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -47,10 +47,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://fa-dev-cicd-practice.azurewebsites.net/api/environment",
+									"raw": "https://fa-dev-jira-automation-poc.azurewebsites.net/api/environment",
 									"protocol": "https",
 									"host": [
-										"fa-dev-cicd-practice",
+										"fa-dev-jira-automation-poc",
 										"azurewebsites",
 										"net"
 									],
@@ -78,10 +78,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://fa-prd-cicd-practice.azurewebsites.net/api/environment",
+									"raw": "https://fa-prd-jira-automation-poc.azurewebsites.net/api/environment",
 									"protocol": "https",
 									"host": [
-										"fa-prd-cicd-practice",
+										"fa-prd-jira-automation-poc",
 										"azurewebsites",
 										"net"
 									],

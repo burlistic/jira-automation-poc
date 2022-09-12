@@ -5,7 +5,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace CiCd.Practice
+namespace PracticeFunctions
 {
     public class EchoEnvironmentResponse
     {

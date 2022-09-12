@@ -18,13 +18,13 @@ on:
 
 jobs:
   call-deploy-app-dev:
-    if: github.ref_name == 'dev'
+    if: github.ref_name != 'prod'
     uses: ./.github/workflows/deploy-app.yml
     with:
       environment: dev
       targetRegion: australiaeast
       dotnetVersion: "6.0.x"
-      functionAppPackagePath: src/CiCdPracticeFunctions
+      functionAppPackagePath: src/PracticeFunctions
       functionAppName: fa-dev-${{ github.event.repository.name }}
     secrets:
       azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
@@ -37,7 +37,7 @@ jobs:
       environment: prd
       targetRegion: australiaeast
       dotnetVersion: "6.0.x"
-      functionAppPackagePath: src/CiCdPracticeFunctions
+      functionAppPackagePath: src/PracticeFunctions
       functionAppName: fa-prd-${{ github.event.repository.name }}
     secrets:
       azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}

@@ -83,7 +83,7 @@ function getEnvironment() {
 
     const environment = getEnvironmentChoice();
 
-    const url = "https://fa-" + environment + "-cicd-practice.azurewebsites.net/api/environment";
+    const url = "https://fa-" + environment + "-jira-automation-poc.azurewebsites.net/api/environment";
 
     xhttp.open("GET", url);
     xhttp.send();

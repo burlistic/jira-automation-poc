@@ -18,4 +18,4 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Run Unit Tests
-        run: cd ./tests/CiCdPracticeFunctions.UnitTests && dotnet restore && dotnet build && dotnet test
+        run: cd ./tests/PracticeFunctions.UnitTests && dotnet restore && dotnet build && dotnet test

@@ -1,4 +1,4 @@
-name: "Deploy cicd-practice"
+name: "Deploy jira-automation-poc"
 
 on:
   workflow_call:
